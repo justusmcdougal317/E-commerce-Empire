@@ -30,4 +30,4 @@ const seedCategories = async () => {
 };
 
 // Invoke the seedCategories function
-seedCategories();
+seedCategories(); 

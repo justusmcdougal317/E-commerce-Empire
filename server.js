@@ -1,6 +1,6 @@
 const express = require('express');
-const routes = require('./Myapp/routes/api');
 const { Sequelize } = require('sequelize');
+const apiRoutes = require('./Myapp/routes/api');
 require('dotenv').config();
 
 // Import sequelize connection
@@ -34,7 +34,7 @@ app.get('/', (req, res) => {
 });
 
 // Use your API routes
-app.use(routes);
+app.use('/api', apiRoutes);
 
 // Middleware to handle 404 errors
 app.use((req, res) => {
@@ -45,10 +45,6 @@ app.use((req, res) => {
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send('500 - Internal Server Error');
-});
-
-app.use((req, res) => {
-  res.status(404).send('404 - Not Found');
 });
 
 // Sync sequelize models to the database
